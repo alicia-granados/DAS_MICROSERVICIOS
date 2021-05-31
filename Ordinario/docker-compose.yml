@@ -1,19 +1,22 @@
 version: "3.3"
 services: 
+    # Contenedor A
     mongo:
         container_name: mongo_db
         image: mongo:4.2
         ports:
-            - 27027:27017
+            - 27018:27017
         restart: always
         environment:
             MONGO_INITDB_ROOT_USERNAME: foo
             MONGO_INITDB_ROOT_PASSWORD: bar123
-            MONGO_INITDB_DATABASE: baz
+            MONGO_INITDB_DATABASE: Libreria
         volumes: 
-            - volumen_mongo:/usr/src/ordinario
+            - volumen_mongo:/usr/src/Ordinario
+
+    # Contenedor B
     mongo-express:
-        container_name: mongo_dbms
+        container_name: dbms
         image: mongo-express
         restart: always
         ports:
@@ -24,5 +27,19 @@ services:
             ME_CONFIG_MONGODB_ADMINPASSWORD: bar123
             ME_CONFIG_BASICAUTH_USERNAME: foo
             ME_CONFIG_BASICAUTH_PASSWORD: bar123
+            
+    #Contenedor C
+    pyhton:
+        container_name: scraperLibros
+        build: ./scrapper
+        restart: unless-stopped
+        ports: 
+            - 5000:5000
+        depends_on: 
+            - mongo
+        volumes: 
+            - volumen_mongo:/usr/src/Ordinario
+        env_file: 
+            - ./scrapper/env.list
 volumes: 
     volumen_mongo:
