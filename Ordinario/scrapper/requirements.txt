@@ -1,0 +1,1 @@
+pymongo[gssapi,aws,ocsp,snappy,srv,tls,zstd,encryption]
