@@ -27,14 +27,14 @@ for i in range(dictlibros.__len__() - 1):
 for l in range(dictLibrosDos.__len__()):
     
     # Extrae los campos necesarios de la API
-    title = dictLibrosDos[l]["volumeInfo"].get("title", "No title here")
-    subtitle = dictLibrosDos[l]["volumeInfo"].get("subtitle", "No subtitle here")
-    authors = dictLibrosDos[l]["volumeInfo"].get("authors", "No authors here")
-    publisher = dictLibrosDos[l]["volumeInfo"].get("publisher", "No publisher here")
-    publishedDate = dictLibrosDos[l]["volumeInfo"].get("publishedDate", "No published date here")
-    description = dictLibrosDos[l]["volumeInfo"].get("description", "No description here")
-    pageCount = dictLibrosDos[l]["volumeInfo"].get("pageCount", "No pages count here")
-    categories = dictLibrosDos[l]["volumeInfo"].get("categories", "No categories here")
+    title = dictLibrosDos[l]["volumeInfo"].get("title", "")
+    subtitle = dictLibrosDos[l]["volumeInfo"].get("subtitle", "")
+    authors = dictLibrosDos[l]["volumeInfo"].get("authors", "")
+    publisher = dictLibrosDos[l]["volumeInfo"].get("publisher", "")
+    publishedDate = dictLibrosDos[l]["volumeInfo"].get("publishedDate", "")
+    description = dictLibrosDos[l]["volumeInfo"].get("description", "")
+    pageCount = dictLibrosDos[l]["volumeInfo"].get("pageCount", "")
+    categories = dictLibrosDos[l]["volumeInfo"].get("categories", "")
    
     # Se guardan los datos extraidos al nuevo diccionario
     dictLibrosTres[l] = {
