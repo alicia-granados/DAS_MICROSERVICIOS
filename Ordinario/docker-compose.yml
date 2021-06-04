@@ -41,7 +41,22 @@ services:
             - volumen_mongo:/usr/src/Ordinario
         env_file: 
             - ./scrapper/env.list
-       
+
+    # Contenedor D
+    flask:
+        container_name: pyapp
+        build: ./flask
+        restart: unless-stopped
+        ports:
+          - "5001:5000"
+        volumes:
+          - type: bind
+            source: ./flask
+            target: /usr/src/flask
+        depends_on:
+          - mongo
+        env_file:
+          - ./flask/env.list  
 volumes: 
     volumen_mongo:
     
