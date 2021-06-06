@@ -1,10 +1,12 @@
 # Import the required Python modules and Flask libraries
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, render_template
+import flask
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from bson import json_util
 from bson.objectid import ObjectId
 import json
+
 
 # Create a Flask app object
 app = Flask(__name__)
@@ -17,8 +19,14 @@ app.config['MONGO_USERNAME'] = 'foo'
 app.config['MONGO_PASSWORD'] = 'bar123'
 app.config['MONGO_AUTH_SOURCE'] = 'admin'
 
+
 # Connect to MongoDB using Flask's PyMongo wrapper
 mongo = PyMongo(app)
+
+#Render and show the template "home.html"
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 # Insert Book
 @app.route('/libros', methods=['POST'])
@@ -63,14 +71,14 @@ def create_book():
     else:
         return not_found()
 
-# Show all the books
+# Show all books
 @app.route('/libros', methods=['GET'])
 def get_libros():
     books = mongo.db.libros.find() # Search  books
-    response = json_util.dumps(books) ## Return JSON
+    response = json_util.dumps(books, indent=2) ## Return a "pretty json"
     return Response(response, mimetype="application/json")  # Content type will be returned
 
-# Show a  book
+# Show a book
 @app.route('/libros/<id>', methods=['GET'])
 def get_libro(id):
     print(id)# imprime id
@@ -120,7 +128,7 @@ def update_libro(_id):
     else:
        return not_found()
 
-# Show a message of "not found"
+# Show a "not found" message
 @app.errorhandler(404)
 def not_found(error=None):
     message = {
@@ -130,6 +138,11 @@ def not_found(error=None):
     response = jsonify(message)   # Serializes data to JSON
     response.status_code = 404  #  Add the status of the request
     return response  # Return JSON 
+
+#Show a "not found page" template
+# @app.errorhandler(404)
+# def page_not_found(error):
+#     return render_template('not_found.html'), 404
 
 
 if __name__ == "__main__":
