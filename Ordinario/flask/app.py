@@ -83,7 +83,7 @@ def get_libros():
 def get_libro(id):
     print(id)# imprime id
     book = mongo.db.libros.find_one({'_id': ObjectId(id), }) # Search a book
-    response = json_util.dumps(book) ## Return JSON
+    response = json_util.dumps(book, indent=2) ## Return JSON
     return Response(response, mimetype="application/json")  # Content type will be returned
 
 # Delet a book
