@@ -1,5 +1,6 @@
 # Import the required Python modules and Flask libraries
 from flask import Flask, jsonify, request, Response, render_template
+from flask_cors import CORS,cross_origin
 import flask
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
@@ -10,6 +11,8 @@ import json
 
 # Create a Flask app object
 app = Flask(__name__)
+cors= CORS(app)
+app.config['CORS_HEADERS']= 'Content-Type'
 # Configure the Flask application to connect with the MongoDB server
 app.config['MONGO_URI'] = "mongodb://foo:bar123@mongo_db:27017/Libreria?authSource=admin"
 app.config['MONGO_HOST'] = 'mongo_db'
@@ -30,6 +33,7 @@ def home():
 
 # Insert Book
 @app.route('/libros', methods=['POST'])
+@cross_origin()
 def create_book():
     # Receiving Data
     title = request.json['title']
@@ -73,6 +77,7 @@ def create_book():
 
 # Show all books
 @app.route('/libros', methods=['GET'])
+@cross_origin()
 def get_libros():
     books = mongo.db.libros.find() # Search  books
     response = json_util.dumps(books, indent=2) ## Return a "pretty json"
@@ -80,6 +85,7 @@ def get_libros():
 
 # Show a book
 @app.route('/libros/<id>', methods=['GET'])
+@cross_origin()
 def get_libro(id):
     print(id)# imprime id
     book = mongo.db.libros.find_one({'_id': ObjectId(id), }) # Search a book
@@ -88,6 +94,7 @@ def get_libro(id):
 
 # Delet a book
 @app.route('/libros/<id>', methods=['DELETE'])
+@cross_origin()
 def delete_libro(id):
     mongo.db.libros.delete_one({'_id': ObjectId(id)}) #Delete a book
     response = jsonify({'message': 'Book' + id + ' Deleted Successfully'}) # Response id book deleted
@@ -96,6 +103,7 @@ def delete_libro(id):
 
 # Update a book
 @app.route('/libros/<_id>', methods=['PUT'])
+@cross_origin()
 def update_libro(_id):
     # Receiving Data
     title = request.json['title']
@@ -130,6 +138,7 @@ def update_libro(_id):
 
 # Show a "not found" message
 @app.errorhandler(404)
+@cross_origin()
 def not_found(error=None):
     message = {
         'message': 'Resource Not Found ' + request.url,
