@@ -11,6 +11,7 @@ import json
 
 # Create a Flask app object
 app = Flask(__name__)
+
 cors= CORS(app)
 app.config['CORS_HEADERS']= 'Content-Type'
 # Configure the Flask application to connect with the MongoDB server

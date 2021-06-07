@@ -57,19 +57,7 @@ services:
           - mongo
         env_file:
           - ./flask/env.list
-          
-    # Contenedor F
-    vue:
-        container_name: vue
-        build: ./vue
-        restart: on-failure:15
-        volumes:
-        - .:/vue
-        ports:
-        - 8079:8080
-        depends_on: 
-        - mongo
-        - pyhton  
+
 volumes: 
     volumen_mongo:
     
