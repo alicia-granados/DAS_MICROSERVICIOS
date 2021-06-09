@@ -23,7 +23,7 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.subtitle }}</td>
                 <td>{{ item.authors }}</td>
-                <td>{{ item.publisher }}}</td>
+                <td>{{ item.publisher }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.pageCount }} </td>
                 <td>{{ item.publishedDate }}</td>
@@ -35,6 +35,13 @@
                         @click="removeBook(item)" >
                       Delete
                     </button>
+                    <br/><br/>
+                    <button type="button"
+                        class="btn btn-light btn-sm" >
+                        <router-link  :to="{name:'bookid', params:{id:item._id.$oid}}">View</router-link> 
+                       
+                    </button>
+                    
                 </td>
             
                 </tr>
@@ -43,6 +50,15 @@
         </table>
     </div>
 </template>
+<style>
+
+  #route {
+    font-weight: normal;
+    color: #ffff;
+      font-size:130%
+  }
+
+</style>
 
 <script>
     
