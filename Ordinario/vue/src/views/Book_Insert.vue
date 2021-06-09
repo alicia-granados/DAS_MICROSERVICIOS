@@ -22,12 +22,12 @@
                 <input type="text" class="form-control" id="form-pageCount-input"  name="form-pageCount-input" placeholder="Page Count" required>
                 <br/>
                 <label for="form-publishedDate-input">Publish Date</label>
-                <input type="text" class="form-control" id="form-publishedDate-input" name="form-pageCount-input" placeholder="Publish Date" required>
+                <input type="text" class="form-control" id="form-publishedDate-input" name="form-publishedDate-input" placeholder="Publish Date" required>
                 <br/>
                 <label for="form-categories-input">Categories</label>
                 <input type="text" class="form-control" id="form-categories-input"  name="form-categories-input" placeholder="Categories" required>
                 <br/>
-                <button type="submit" class="btn btn-primary" >Submit</button>
+                <button type="submit" class="btn btn-primary" >Insert</button>
             </div>
         </form>
     </div>

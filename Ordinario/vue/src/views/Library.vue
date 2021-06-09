@@ -28,7 +28,7 @@
                 <td>{{ item.pageCount }} </td>
                 <td>{{ item.publishedDate }}</td>
                 <td>{{ item.categories }} </td>
-                <td>
+                <td id ="ruta"><br/>
                     <button
                         type="button"
                         class="btn btn-danger btn-sm"
@@ -39,6 +39,11 @@
                     <button type="button"
                         class="btn btn-light btn-sm" >
                         <router-link  :to="{name:'bookid', params:{id:item._id.$oid}}">View</router-link> 
+                       
+                    </button> <br/><br/>
+                    <button  type="button"
+                        class="btn btn-light btn-sm " >
+                        <router-link  :to="{name:'bookidup', params:{id:item._id.$oid}}">Update</router-link> 
                        
                     </button>
                     
@@ -52,10 +57,10 @@
 </template>
 <style>
 
-  #route {
-    font-weight: normal;
-    color: #ffff;
-      font-size:130%
+    #ruta a {
+    font-weight: small;
+    color: #f02a68;
+    font-size:93%
   }
 
 </style>
