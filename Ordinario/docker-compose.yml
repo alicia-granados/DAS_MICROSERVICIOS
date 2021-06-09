@@ -32,7 +32,7 @@ services:
     pyhton:
         container_name: scraperLibros
         build: ./scrapper
-        restart: unless-stopped
+        restart: on-failure:15
         ports: 
             - 5000:5000
         depends_on: 
@@ -56,7 +56,20 @@ services:
         depends_on:
           - mongo
         env_file:
-          - ./flask/env.list  
+          - ./flask/env.list
+          
+    # Contenedor F
+    vue:
+        container_name: vue
+        build: ./vue
+        restart: on-failure:15
+        volumes:
+        - .:/vue
+        ports:
+        - 8079:8080
+        depends_on: 
+        - mongo
+        - pyhton  
 volumes: 
     volumen_mongo:
     
