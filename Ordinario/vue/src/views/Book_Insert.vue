@@ -1,0 +1,108 @@
+<template>
+    <div class="book">
+        <br/><br/>
+        <form id="form-book-group" v-on:submit.prevent="onSumbit" >
+            <div class="form-group">
+                <label for="form-title-input">Title</label>
+                <input type="text" class="form-control" id="form-title-input" name="form-title-input" placeholder="Title" required>
+                <br/>
+                <label for="form-subtitle-input">Subtitle</label>
+                <input type="text" class="form-control" id="form-subttitle-input" name="form-subttitle-input"  placeholder="Subtitle" required>
+                <br/>
+                <label for="form-authors-input">Authors</label>
+                <input type="text" class="form-control" id="form-authors-input"  name="form-authors-input" placeholder="Authors" required>
+                <br/>
+                <label for="form-publisher-input">Publisher</label>
+                <input type="text" class="form-control" id="form-publisher-input" name="form-publisher-input"  placeholder="Publisher" required>
+                <br/>
+                <label for="form-description-input">Description</label>
+                <input type="text" class="form-control" id="form-description-input" name="form-description-input" placeholder="Description" required>
+                <br/>
+                <label for="form-pageCount-input">Page Count</label>
+                <input type="text" class="form-control" id="form-pageCount-input"  name="form-pageCount-input" placeholder="Page Count" required>
+                <br/>
+                <label for="form-publishedDate-input">Publish Date</label>
+                <input type="text" class="form-control" id="form-publishedDate-input" name="form-publishedDate-input" placeholder="Publish Date" required>
+                <br/>
+                <label for="form-categories-input">Categories</label>
+                <input type="text" class="form-control" id="form-categories-input"  name="form-categories-input" placeholder="Categories" required>
+                <br/>
+                <button type="submit" class="btn btn-primary" >Insert</button>
+            </div>
+        </form>
+    </div>
+</template>
+
+<script>
+   
+    export default {
+    name: 'book',
+    components: {
+    },
+    data(){
+        return {
+            Book:{
+                "title": "",
+                "subtitle": "", 
+                "authors": "",
+                "publisher": "", 
+                "publishedDate": "", 
+                "description": "",
+                "pageCount": "", 
+                "categories": ""
+            }
+        }
+    }, 
+     methods:{
+        addBook(book) {
+          
+            //console.log(book);
+            fetch(`http://localhost:5001/libros` , {
+                method: 'POST',
+                body: JSON.stringify(book),
+                mode: "cors",
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then((res) => res.json() )
+           
+                .then(res => {
+                    console.log(res) 
+                    this.Alert();
+                    location.reload()
+                    })
+            .catch(function(e) {
+                console.log(e); 
+            });
+        },
+        onSumbit(){
+            
+            let title = document.getElementById("form-title-input").value;
+            let subtitle = document.getElementById("form-subttitle-input").value;
+            let authors = document.getElementById("form-authors-input").value;
+            let publisher = document.getElementById("form-publisher-input").value;
+            let description = document.getElementById("form-description-input").value;
+            let pageCount = document.getElementById("form-pageCount-input").value;
+            let publishedDate = document.getElementById("form-publishedDate-input").value;
+            let categories = document.getElementById("form-categories-input").value;
+            
+            const book = {
+                title: title,
+                subtitle: subtitle,
+                authors: authors,
+                publisher: publisher,
+                publishedDate: publishedDate,
+                description: description,
+                pageCount: pageCount,
+                categories: categories
+            };
+            //console.log(book)
+            this.addBook(book);
+        
+        },Alert(){
+            alert('Inserted book')
+        }        
+    }
+    }
+</script>
