@@ -56,7 +56,7 @@ def create_book():
     categories = request.json['categories']
     # If the previous variables are true, Insert to Mongo
     if title and subtitle and authors and publisher and publishedDate and description and pageCount and categories:
-        #////////////Se crea mensaje para rabbit y se manda////////////////////////////////
+        #////////////Se crea mensaje para rabbit y se manda en caso de querer hacerlo sin rabbit comentar esta parte y descomentar la sigueinte////////////////////////////////
         message={
                 'title': title, 
                 'subtitle': subtitle, 
@@ -69,20 +69,19 @@ def create_book():
             }
         channel.basic_publish(exchange='',routing_key='libros',body=json.dumps(message))
         connection.close()
-        iniciar_Consumer()
 #//////////////////////////////////////////////////////////////////////////////////////////
 
-        id = mongo.db.libros.insert_one(
-            {   # Assigns values of JSON variables
-                'title': title, 
-                'subtitle': subtitle, 
-                'authors': authors,
-                'publisher': publisher, 
-                'publishedDate': publishedDate, 
-                'description': description,
-                'pageCount': pageCount, 
-                'categories': categories
-            })
+#        id = mongo.db.libros.insert_one(
+ #           {   # Assigns values of JSON variables
+  #              'title': title, 
+   #             'subtitle': subtitle, 
+    #            'authors': authors,
+     #           'publisher': publisher, 
+      #          'publishedDate': publishedDate, 
+       #         'description': description,
+        #        'pageCount': pageCount, 
+         #       'categories': categories
+          #  })
         # Serializes data to JSON
         response = jsonify({
             '_id': str(id),
@@ -178,23 +177,6 @@ def not_found(error=None):
 # @app.errorhandler(404)
 # def page_not_found(error):
 #     return render_template('not_found.html'), 404
-
-def iniciar_Consumer():
-    #Se configura la conexion para el consumidor en rabbitmq
-    credentials=pika.PlainCredentials('foo','baz123')
-    parameters=pika.ConnectionParameters(host='rabbit',port=5672,virtual_host='/',credentials=credentials)
-    connection=pika.BlockingConnection(parameters)
-
-
-    channel=connection.channel()
-    channel.queue_declare(queue='libros')
-
-    def callback(ch,method,properties,body):
-        print(f' [x] received {body}')
-
-    channel.basic_consume(queue='libros',on_message_callback=callback,auto_ack=True)
-
-    channel.start_consuming()
 
 
 if __name__ == "__main__":

@@ -11,6 +11,12 @@ services:
             MONGO_INITDB_ROOT_USERNAME: foo
             MONGO_INITDB_ROOT_PASSWORD: bar123
             MONGO_INITDB_DATABASE: Libreria
+            RABBIT_HOST: rabbitmq
+            RABBIT_PORT: 5672
+            RABBIT_USER: foo
+            RABBIT_PASSWORD: baz123
+            RABBITMQ_SERVER: rabbitmq
+            AMQPHOST: amqp://guest:guest@rabbitmq:5672
         volumes: 
             - volumen_mongo:/usr/src/Ordinario
 
@@ -59,6 +65,22 @@ services:
           - ./flask/env.list
           
     # Contenedor E
+    worker:
+        build: ./Rabbit
+        restart: on-failure:10
+        container_name: worker1
+        depends_on: 
+            - rabbitmq
+        env_file: 
+            - ./Rabbit/env.list
+    worker_2:
+        build: ./Rabbit
+        restart: on-failure:10
+        container_name: worker2
+        depends_on: 
+            - rabbitmq
+        env_file: 
+            - ./Rabbit/env.list
     rabbitmq:
         container_name: rabbit
         image: rabbitmq:3-management
