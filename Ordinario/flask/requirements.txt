@@ -2,3 +2,4 @@ Flask==1.1.2
 pymongo
 flask-cors
 Flask-PyMongo
+pika

@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from bson import json_util
 from bson.objectid import ObjectId
 import json
+import pika
 
 
 # Create a Flask app object
@@ -36,6 +37,14 @@ def home():
 @app.route('/libros', methods=['POST'])
 @cross_origin()
 def create_book():
+    #///////////////////////////RabbitMQ ConfiguracionInicial////////////////////////
+    credentials=pika.PlainCredentials('foo','baz123')
+    parameters=pika.ConnectionParameters(host='rabbit',port=5672,virtual_host='/',credentials=credentials)
+    connection=pika.BlockingConnection(parameters)
+
+
+    channel=connection.channel()
+    channel.queue_declare(queue='libros')
     # Receiving Data
     title = request.json['title']
     subtitle = request.json['subtitle']
@@ -47,6 +56,22 @@ def create_book():
     categories = request.json['categories']
     # If the previous variables are true, Insert to Mongo
     if title and subtitle and authors and publisher and publishedDate and description and pageCount and categories:
+        #////////////Se crea mensaje para rabbit y se manda////////////////////////////////
+        message={
+                'title': title, 
+                'subtitle': subtitle, 
+                'authors': authors,
+                'publisher': publisher, 
+                'publishedDate': publishedDate, 
+                'description': description,
+                'pageCount': pageCount, 
+                'categories': categories
+            }
+        channel.basic_publish(exchange='',routing_key='libros',body=json.dumps(message))
+        connection.close()
+        iniciar_Consumer()
+#//////////////////////////////////////////////////////////////////////////////////////////
+
         id = mongo.db.libros.insert_one(
             {   # Assigns values of JSON variables
                 'title': title, 
@@ -154,8 +179,26 @@ def not_found(error=None):
 # def page_not_found(error):
 #     return render_template('not_found.html'), 404
 
+def iniciar_Consumer():
+    #Se configura la conexion para el consumidor en rabbitmq
+    credentials=pika.PlainCredentials('foo','baz123')
+    parameters=pika.ConnectionParameters(host='rabbit',port=5672,virtual_host='/',credentials=credentials)
+    connection=pika.BlockingConnection(parameters)
+
+
+    channel=connection.channel()
+    channel.queue_declare(queue='libros')
+
+    def callback(ch,method,properties,body):
+        print(f' [x] received {body}')
+
+    channel.basic_consume(queue='libros',on_message_callback=callback,auto_ack=True)
+
+    channel.start_consuming()
+
 
 if __name__ == "__main__":
+    
     app.run(debug=True) # The run configuration
 
 

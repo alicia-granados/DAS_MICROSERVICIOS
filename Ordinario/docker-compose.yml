@@ -58,6 +58,18 @@ services:
         env_file:
           - ./flask/env.list
           
+    # Contenedor E
+    rabbitmq:
+        container_name: rabbit
+        image: rabbitmq:3-management
+        hostname: my-rabbit
+        ports: 
+            - 5672:5672
+            - 15672:15672
+        environment: 
+            - RABBITMQ_DEFAULT_USER=foo
+            - RABBITMQ_DEFAULT_PASS=baz123     
+
     # Contenedor F
     vue:
         container_name: vue
