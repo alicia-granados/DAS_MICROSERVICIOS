@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/book',
     name: 'book',
-    component: () => import (/* webpackChunkName: "book" */ '../views/Book_Insert.vue')
+    component: () => import (/* webpackChunkName: "book_Insert" */ '../views/Book_Insert.vue')
   },
   {
     path: '/book/:id',
@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/bookup/:id',
     name: 'bookidup',
-    component: () => import (/* webpackChunkName: "bookid" */ '../views/BookId_Update.vue')
+    component: () => import (/* webpackChunkName: "bookid_update */ '../views/BookId_Update.vue')
   },
   
 ]

@@ -75,7 +75,7 @@
       
     },methods:{
         Updated_Book(book) {
-            console.log(book);
+            //console.log(book);
             let book_id = this.$route.params.id;
             fetch(`http://localhost:5001/libros/${book_id}` , {
                 method: 'PUT',
