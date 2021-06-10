@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-
+// Assignment of the routes for each view
 const routes = [
   {
     path: '/',
