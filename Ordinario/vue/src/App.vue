@@ -2,15 +2,17 @@
   
   <div id="app" class="container">
     <div id="nav">
-      <router-link  class="navbar-brand"  to="/">Home</router-link> 
-      <router-link  class="navbar-brand" to="/library">Library</router-link> 
-      <router-link  class="navbar-brand" to="/book">Insert</router-link>     
+    
+      <router-link  class="navbar-brand"  to="/">Home</router-link>  <!-- Returns to the "Home" view -->
+      <router-link  class="navbar-brand" to="/library">Library</router-link>  <!-- Returns to the "Library" view -->
+      <router-link  class="navbar-brand" to="/book">Insert</router-link> <!-- Returns to the "Instert" view -->
       <router-view/>
     </div>    
   </div>
 </template>
 
-<style>
+<style> 
+  /* Adds styles to HTML */
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -28,7 +30,6 @@
     color: #f02a68;
       font-size:130%
   }
-
   
 </style>
 
