@@ -1,6 +1,7 @@
 <template>
     <div class="book">
         <br/><br/>
+        <!-- A form to instert book -->
         <form id="form-book-group" v-on:submit.prevent="onSumbit" >
             <div class="form-group">
                 <label for="form-title-input">Title</label>
@@ -39,6 +40,7 @@
     name: 'book',
     components: {
     },
+    // A function that returns a data object for the component instance.
     data(){
         return {
             Book:{
@@ -54,30 +56,32 @@
         }
     }, 
      methods:{
+        // Function to instert a book
         addBook(book) {
           
             //console.log(book);
+            // Access and manipulate the API using the HTTP method
             fetch(`http://localhost:5001/libros` , {
                 method: 'POST',
-                body: JSON.stringify(book),
-                mode: "cors",
+                body: JSON.stringify(book), // Convert the book object to a string
+                mode: "cors", // Permission to access selected resources from a server  
                 headers: {
                     'Content-Type': 'application/json',
                 }
             })
-                .then((res) => res.json() )
+                .then((res) => res.json()) // Returns a promise with the body of the text transformed to JSON
            
                 .then(res => {
-                    console.log(res) 
-                    this.Alert();
-                    location.reload()
+                    console.log(res); // Show the promise in the browser console
+                    this.Alert(); // Call the function "Alert" to say that the book was inserted
+                    location.reload(); // Reload the page after the book was inserted
                     })
-            .catch(function(e) {
-                console.log(e); 
+            .catch(function(e) {   
+                console.log(e); // In case of an error, show that error in the browser console 
             });
         },
         onSumbit(){
-            
+            // Gets the entered values of each input
             let title = document.getElementById("form-title-input").value;
             let subtitle = document.getElementById("form-subttitle-input").value;
             let authors = document.getElementById("form-authors-input").value;
@@ -87,7 +91,8 @@
             let publishedDate = document.getElementById("form-publishedDate-input").value;
             let categories = document.getElementById("form-categories-input").value;
             
-            const book = {
+            // Pass the value of each input to the variable "book"
+            const book = { 
                 title: title,
                 subtitle: subtitle,
                 authors: authors,
@@ -98,10 +103,10 @@
                 categories: categories
             };
             //console.log(book)
-            this.addBook(book);
+            this.addBook(book); // Calls the function to insert the book, and passes the book as a parameter
         
         },Alert(){
-            alert('Inserted book')
+            alert('Inserted book'); // Shows an alert after insert a book
         }        
     }
     }
