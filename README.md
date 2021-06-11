@@ -58,6 +58,8 @@ Lleva el nombre de *"vue"*
 <code>$ sudo docker-compose up --build</code>
 > Nota: Una vez que esté corriendo podremos ver en consola lo que esta pasando.
 
+![console](Ordinario/assets/console/console.jpg)
+
 ## Instrucciones para acceder a los servicios
 1.- El servicio de MongoDB corre en el puerto *27017*.
 2.- El servicio web de MongoExpress corre en http://localhost:8082.
@@ -68,6 +70,11 @@ Lleva el nombre de *"vue"*
 4.- El servicio de RabbitMQ corre en el puerto *15672* además también corre en http://localhost:15672.
 5.- El servicio de Vue.js corre en http://localhost:8079
 
+## Recorrido por Mongo Express
+Este servicio permite el almacenamiento, modificación y extracción de la información en una base de datos.Primero es necesario ingresar las credenciales para tener acceso a la base de datos.
+
+Mostrará los libros insertados desde el Contenedor C. Ahi podrás insertar , borrar, actualizar o ver la infromación  del libro mediante el dbms de Mongo.
+![dbms_2](Ordinario/assets/Mongo_Express/dbms_1.jpeg)
 
 ## Recorrido por la página web de Vue.js
 Este servicio se basa en consumir la API del contenedor de Flask mediante los métodos HTTP.
