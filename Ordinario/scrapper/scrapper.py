@@ -3,14 +3,14 @@ from db import db
 import json
 import urllib.request
  
-# Se conecta a la API de Google y la abre como un archivo, después lo que se trae de la API lo convierte en un JSON
+# It connects to the Google API and opens it as a file, then what is brought from the API converts it into a JSON
  
 with urllib.request.urlopen("https://www.googleapis.com/books/v1/volumes?q=search+terms&AIzaSyDqHYhoLtp0dR28gILA4OJFWoxYxJiDu6Q") as url:
  
-    data = json.loads(url.read().decode()) # Convierte el JSON a string
-    # print(data) Imprime data
+    data = json.loads(url.read().decode()) # Convert the JSON to string
+    # print(data) Print data
  
-# Después a la variable dictlibros, le agrega la llave "ítems" del json data
+# After the variable dictlibros, add the key "items" of the json data
 dictlibros = {}
 
 dictlibros = data['items']
@@ -19,14 +19,14 @@ dictLibrosDos = {}
  
 dictLibrosTres = {}
 
-# Itera el diccionario dictlibros para agregar más valores al nuevo diccionario dictLibrosDos
+# Iterate the dictionary dictlibros to add more values ​​to the new dictionary dictLibrosDos
 for i in range(dictlibros.__len__() - 1):
      dictLibrosDos[i] = dictlibros[i]
 
-# Agrega todos los libros al dicLibrosDos 
+# Add all books to dicLibrosDos
 for l in range(dictLibrosDos.__len__()):
     
-    # Extrae los campos necesarios de la API
+    # Extract the required fields from the API
     title = dictLibrosDos[l]["volumeInfo"].get("title", "")
     subtitle = dictLibrosDos[l]["volumeInfo"].get("subtitle", "")
     authors = dictLibrosDos[l]["volumeInfo"].get("authors", "")
@@ -36,7 +36,7 @@ for l in range(dictLibrosDos.__len__()):
     pageCount = dictLibrosDos[l]["volumeInfo"].get("pageCount", "")
     categories = dictLibrosDos[l]["volumeInfo"].get("categories", "")
    
-    # Se guardan los datos extraidos al nuevo diccionario
+    # The extracted data is saved to the new dictionary
     dictLibrosTres[l] = {
         "title": title,
         "subtitle":subtitle,
@@ -49,6 +49,6 @@ for l in range(dictLibrosDos.__len__()):
     }
     
   
-for j in range(dictLibrosTres.__len__() - 1):  # Recorre diccinario de dicLibrosTres 
+for j in range(dictLibrosTres.__len__() - 1):  # Go through the dictionary of dicLibrosTres
 
-    print(db.libros.insert_one(dictLibrosTres[j]))  # Inserta libros a la colección
+    print(db.libros.insert_one(dictLibrosTres[j]))  # Insert books to the collection
