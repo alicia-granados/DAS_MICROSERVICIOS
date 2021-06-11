@@ -73,6 +73,7 @@ services:
             - rabbitmq
         env_file: 
             - ./Rabbit/env.list
+
     worker_2:
         build: ./Rabbit
         restart: on-failure:10
@@ -81,6 +82,25 @@ services:
             - rabbitmq
         env_file: 
             - ./Rabbit/env.list
+
+    worker_3:
+        build: ./RabbitUpdate
+        restart: on-failure:10
+        container_name: worker3
+        depends_on: 
+            - rabbitmq
+        env_file: 
+            - ./Rabbit/env.list
+
+    worker_4:
+        build: ./RabbitDelete
+        restart: on-failure:10
+        container_name: worker4
+        depends_on: 
+            - rabbitmq
+        env_file: 
+            - ./Rabbit/env.list
+            
     rabbitmq:
         container_name: rabbit
         image: rabbitmq:3-management
