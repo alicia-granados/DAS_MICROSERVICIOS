@@ -1,10 +1,10 @@
 import pymongo
 
-# Conectarnos con el contenedor de mongo
+# Connect with the mongo container
 mongo_cliente =pymongo.MongoClient()
 
-# Pasar las credenciales para acceder
+# Pass the credentials to access
 mongo_cliente =pymongo.MongoClient("mongodb://mongo_db:27017/",username='foo',password='bar123') 
 
-# Crear base de datos
+# Create database
 db = mongo_cliente["Libreria"]
