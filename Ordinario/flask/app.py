@@ -7,7 +7,7 @@ from pymongo import MongoClient
 from bson import json_util
 from bson.objectid import ObjectId
 import json
-
+import pika
 
 # Create a Flask app object
 app = Flask(__name__)
@@ -36,6 +36,14 @@ def home():
 @app.route('/libros', methods=['POST'])
 @cross_origin()
 def create_book():
+    #///////////////////////////RabbitMQ ConfiguracionInicial////////////////////////
+    credentials=pika.PlainCredentials('foo','baz123')
+    parameters=pika.ConnectionParameters(host='rabbit',port=5672,virtual_host='/',credentials=credentials)
+    connection=pika.BlockingConnection(parameters)
+
+
+    channel=connection.channel()
+    channel.queue_declare(queue='libros')
     # Receiving Data
     title = request.json['title']
     subtitle = request.json['subtitle']
@@ -47,8 +55,8 @@ def create_book():
     categories = request.json['categories']
     # If the previous variables are true, Insert to Mongo
     if title and subtitle and authors and publisher and publishedDate and description and pageCount and categories:
-        id = mongo.db.libros.insert_one(
-            {   # Assigns values of JSON variables
+        #////////////The RabbitMQ message is created and send (to use without RabbitMQ operations just Comment this part and Uncomment the next code block////////////////////////////////
+        message={
                 'title': title, 
                 'subtitle': subtitle, 
                 'authors': authors,
@@ -57,7 +65,22 @@ def create_book():
                 'description': description,
                 'pageCount': pageCount, 
                 'categories': categories
-            })
+            }
+        channel.basic_publish(exchange='',routing_key='libros',body=json.dumps(message))
+        connection.close()
+    #//////////////////////////////////////////////////////////////////////////////////////////
+
+    #        id = mongo.db.libros.insert_one(
+ #           {   # Assigns values of JSON variables
+  #              'title': title, 
+   #             'subtitle': subtitle, 
+    #            'authors': authors,
+     #           'publisher': publisher, 
+      #          'publishedDate': publishedDate, 
+       #         'description': description,
+        #        'pageCount': pageCount, 
+         #       'categories': categories
+          #  })
         # Serializes data to JSON
         response = jsonify({
             '_id': str(id),
@@ -97,7 +120,22 @@ def get_libro(id):
 @app.route('/libros/<id>', methods=['DELETE'])
 @cross_origin()
 def delete_libro(id):
-    mongo.db.libros.delete_one({'_id': ObjectId(id)}) #Delete a book
+    #///////////////////////////RabbitMQ Initial Settings////////////////////////
+    credentials=pika.PlainCredentials('foo','baz123')
+    parameters=pika.ConnectionParameters(host='rabbit',port=5672,virtual_host='/',credentials=credentials)
+    connection=pika.BlockingConnection(parameters)
+
+
+    channel=connection.channel()
+    channel.queue_declare(queue='librosDelete')
+    #///////////////////////////////////////////////////////////////////////////////////////
+    #////////////The RabbitMQ message is created and send (to use without RabbitMQ operations just Comment this part and Uncomment the next code block////////////////////////////////
+    message={'_id': id}
+    channel.basic_publish(exchange='',routing_key='librosDelete',body=json.dumps(message))
+    connection.close()
+
+    #mongo.db.libros.delete_one({'_id': ObjectId(id)}) #Delete a book
+
     response = jsonify({'message': 'Book' + id + ' Deleted Successfully'}) # Response id book deleted
     response.status_code = 200  # Add the status of the request
     return response   # Return JSON
@@ -106,6 +144,14 @@ def delete_libro(id):
 @app.route('/libros/<_id>', methods=['PUT'])
 @cross_origin()
 def update_libro(_id):
+    #///////////////////////////RabbitMQ ConfiguracionInicial////////////////////////
+    credentials=pika.PlainCredentials('foo','baz123')
+    parameters=pika.ConnectionParameters(host='rabbit',port=5672,virtual_host='/',credentials=credentials)
+    connection=pika.BlockingConnection(parameters)
+
+
+    channel=connection.channel()
+    channel.queue_declare(queue='librosUpdate')
     # Receiving Data
     title = request.json['title']
     subtitle = request.json['subtitle']
@@ -117,19 +163,24 @@ def update_libro(_id):
     categories = request.json['categories']
     # If the previous variables are true, Update to Mongo
     if title and subtitle and authors and publisher and publishedDate and description and pageCount and categories and _id:
-        mongo.db.libros.update_one(
-            {'_id': ObjectId(_id['$oid']) if '$oid' in _id else ObjectId(_id)},
-            {'$set': {
-                'title': title, 
-                 'subtitle': subtitle, 
-                 'authors': authors,
-                 'publisher': publisher, 
-                 'publishedDate': publishedDate, 
-                 'description': description,
-                 'pageCount': pageCount, 
-                 'categories': categories
-                }
-            })
+    #////////////////////////////Create RabbitMQ message for the update (comment this block and uncomment the next to work without RabbitMQ)/////////
+        message=(_id,{'$set': {'title': title, 'subtitle': subtitle, 'authors': authors,'publisher': publisher, 'publishedDate': publishedDate, 'description': description,'pageCount': pageCount, 'categories': categories}})
+        channel.basic_publish(exchange='',routing_key='librosUpdate',body=json.dumps(message))
+        connection.close()
+    #/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        # mongo.db.libros.update_one(
+        #     {'_id': ObjectId(_id['$oid']) if '$oid' in _id else ObjectId(_id)},
+        #     {'$set': {
+        #         'title': title, 
+        #          'subtitle': subtitle, 
+        #          'authors': authors,
+        #          'publisher': publisher, 
+        #          'publishedDate': publishedDate, 
+        #          'description': description,
+        #          'pageCount': pageCount, 
+        #          'categories': categories
+        #         }
+        #     })
         # Serializes data to JSON
         response = jsonify({'message': 'Book' + _id + 'Updated Successfuly'})
         response.status_code = 200 # Add the status of the request
@@ -156,6 +207,7 @@ def not_found(error=None):
 
 
 if __name__ == "__main__":
+    
     app.run(debug=True) # The run configuration
 
 
