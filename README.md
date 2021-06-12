@@ -1,62 +1,64 @@
 # [DAS_MICROSERVICIOS](https://github.com/alicia-granados/DAS_MICROSERVICIOS)
-Repositorio para el proyecto final de la materia Diseño y Arqitectura de Software implementando  la Arquitectura de Microservicios.
+Repository for the final project of the subject Software Design and Architecture implementing the Microservices Architecture.
 
-## MATERIA
+## Subject.
 Diseño y Arquitectura de Software.
 
-## Profesor
+## Professor.
 Angel Santiago Jaime Zavala.
 
-## Equipo
+## Team.
 - Alicia Montserrat Monjaras Granados
-- Jorde de Jesús Hernández Vázquez
+- Jorge de Jesús Hernández Vázquez
 - Bryan Peña Balderas
 
-## Prerequisitos
+## Prerequisites.
 - Docker
 - DockerCompose
 
-## Diagrama de Arquitectura
+## Diagram Architecture.
 ![diagrama_microservicios](/Ordinario/assets/Diagram/Diagram_microservices.jpg)
 
-## Tecnologías
-Para el desarrollo principal de este proyecto utilizamos las siguientes tecnologías:
+## Tecnologíes.
+This are the main technologies that we use to develop this project:
 - Mongo (Database)
 - MongoExpress (DBMS)
 - Vue.js (Frontend)
 - Flask (Backend)
+- Rabbit (Broker)
 
-Para el tema de orquestadores y contenedores utilizamos:
+To orchestrate containers we use:
 - Docker
 - DockerCompose
 
-### Arquitectura
-La arquitectura establecida fue la de microservicios contando con un total de 6 servicios distribuidos en diferentes contenedores.
-- ***Contenedor A***: Contiene una imagen funcional de **MongoDB**  
-Lleva el nombre de *"mongo_db"*
-- ***Contenedor B***: Contiene una imagen funcional de **MongoExpress**  
-Lleva el nombre de *"dbms"*
-- ***Contenedor C***: Contiene un scrapper hecho en **Python** que se encarga de traer los datos de [Vocadb](https://developers.google.com/books) e ingresarlos a la base de datos.  
-Lleva el nombre de *"scraperLibros"*
-- ***Contenedor D***: Contiene una imagen de **Flask**  que servirá como API para lograr la comunicación y manejo de peticiones.
-Lleva el nombre de *"pyapp"*
-- ***Contenedor E***: Contiene una imagen funcional de **RabbitMQ**.
-Lleva el nombre de *"rabbit"*
-- ***Contenedor F***: Contiene una imagen funcional de **Vue.js** que muestra la interfaz gráfica  de un sitio web, donde podrá realizar diferentes peticiones a la api
-Lleva el nombre de *"vue"*
+### Architecture.
+The established architecture was "microservices" with a total of 6 services distributed in different containers.
+- ***Container A***: Contains a functional image of **MongoDB**.  
+His name is *"mongo_db"*
+- ***Container B***: Contains a functional image of **MongoExpress**.  
+His name is *"dbms"*
+- ***Container C***: Contains an scrapper made in **Python**, that extracts data from 
+[Vocadb](https://developers.google.com/books), and inserts it into the database.  
+His name is *"scraperLibros"*
+- ***Container D***: Contains an image of **Flask**, which will be used as an API to establish communication and handling of requests.
+His name is  *"pyapp"*
+- ***Container E***: Contains a functional image of **RabbitMQ**.
+His name is  *"rabbit"*
+- ***Container F***: Contains a functional image of **Vue.js**, which shows the graphical interface of a website, where you can make different requests to the api.
+His name is  *"vue"*
 
 
-## Instrucciones para correr los contenedores
-1. Clonar el repositorio.
-2. Entrar a la carpeta del repositorio.
-3. En caso de tener contenedores corriendo, asegurarte de que todos los contenedores están detenidos.
+## Instructions for running the containers.
+1. Clone the repository.
+2. Enter the repository folder.
+3. In case of having containers running, make sure that all containers are stopped.
 <code>$ sudo docker stop $(sudo docker ps -q -a)</code>
-4.- Asegurarte de que todos los puertos necesarios para correr los contenedores estén disponibles.
-5.- Como paso opcional puedes eliminar todas las imagenes para que no causen ningún tipo de conflicto.
+4.- Make sure all the ports needed to run the containers are available.
+5.- As an optional step you can delete all the images and containers so that they do not cause any  type of conflict .
 <code>$ docker system prune --all</code>
-6.- Corre el orquestador.
+6.- Run the orchestrator.
 <code>$ sudo docker-compose up --build</code>
-> Nota: Una vez que esté corriendo podremos ver en consola lo que esta pasando.
+> Help: Once it is running we can see what is happening on the console.
 
 ![console](Ordinario/assets/console/console.jpg)
 
@@ -102,7 +104,7 @@ Además contamos con las opciones de borrar, ver y actualizar.
 ![Vue5.js](Ordinario/assets/Vue/vue_5.jpeg)
 
 Para borrar solo es necesario dar click en el botón delete. Después de hacer el paso anterior se mostrará la alerta con el mensaje de que se elimino el libro.
-
+  
 ![Vue6.js](Ordinario/assets/Vue/vue_6.jpeg)
 
 Para ver la información de solo un libro es necesario dar click en el botón de View.
@@ -116,5 +118,7 @@ Para actualizar la información de un libro es necesario dar click en Update. De
 
 
 ## Extras
-En la carpeta <code>vue</code> encontrarás otro README con detalles técnicos de Vue.js.
+In the folder <code>vue</code> you will find another README with technical details of Vue.js.
 
+## Project Video
+[DAS_MICROSERVICIOS](https://drive.google.com/file/d/1uMHLMG_LsaQVn6itzyvkREYkrWXNFvk0/view?usp=sharing)
