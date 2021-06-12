@@ -9,7 +9,7 @@ Angel Santiago Jaime Zavala.
 
 ## Team.
 - Alicia Montserrat Monjaras Granados
-- Jorde de Jesús Hernández Vázquez
+- Jorge de Jesús Hernández Vázquez
 - Bryan Peña Balderas
 
 ## Prerequisites.
@@ -25,6 +25,7 @@ This are the main technologies that we use to develop this project:
 - MongoExpress (DBMS)
 - Vue.js (Frontend)
 - Flask (Backend)
+- Rabbit (Broker)
 
 To orchestrate containers we use:
 - Docker
@@ -119,3 +120,5 @@ Para actualizar la información de un libro es necesario dar click en Update. De
 ## Extras
 In the folder <code>vue</code> you will find another README with technical details of Vue.js.
 
+## Project Video
+[DAS_MICROSERVICIOS](https://drive.google.com/file/d/1uMHLMG_LsaQVn6itzyvkREYkrWXNFvk0/view?usp=sharing)
