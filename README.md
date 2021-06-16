@@ -62,62 +62,62 @@ His name is  *"vue"*
 
 ![console](Ordinario/assets/console/console.jpg)
 
-## Instrucciones para acceder a los servicios
-1.- El servicio de MongoDB corre en el puerto *27017*.
-2.- El servicio web de MongoExpress corre en http://localhost:8082.
-<code>usuario: foo</code>  
-<code>contraseña: bar123</code>
-3.- El servicio Python (API) corre en http://localhost:5000.
-3.- El servicio Flask corre en http://localhost:5001.
-4.- El servicio de RabbitMQ corre en el puerto *15672* además también corre en http://localhost:15672.
-5.- El servicio de Vue.js corre en http://localhost:8079
+## Instructions to access the services
+1.- MongoDB service runs on the port *27017*.
+2.- The MongoExpress web service runs on http://localhost:8082.
+<code>user: foo</code>  
+<code>password: bar123</code>
+3.- The Python service (API) runs on http://localhost:5000.
+3.- The Flask service runs on http://localhost:5001.
+4.- RabbitMQ service runs on port *15672*  also runs in http://localhost:15672.
+5.- The Vue.js service runs on http://localhost:8079
 
-## Recorrido por Mongo Express
-Este servicio permite el almacenamiento, modificación y extracción de la información en una base de datos.Primero es necesario ingresar las credenciales para tener acceso a la base de datos.
+## Mongo Express Tour
+This service allows the storage, modification and extraction of information in a database. First, you need to enter the credentials to access the database.
 
-Mostrará los libros insertados desde el Contenedor C. Ahi podrás insertar , borrar, actualizar o ver la infromación  del libro mediante el dbms de Mongo.
+It will show the books inserted from Container C. There you can insert, delete, update or view the information of the book through the Mongo dbms.
 ![dbms_2](Ordinario/assets/Mongo_Express/dbms_1.jpeg)
 
-## Recorrido por la página web de Vue.js
-Este servicio se basa en consumir la API del contenedor de Flask mediante los métodos HTTP.
+## Tour of the Vue.js website
+This service is based on consuming the Flask container API through HTTP methods.
 
 ![Vue1.js](Ordinario/assets/Vue/vue_1.jpeg)
 
-Al dar click en el enlace de  Library,  encontras una tabla con todos los libros que se encuentren en la base de datos.
+By clicking on the Library link, you will find a table with all the books in the database.
 
 ![Vue2.js](Ordinario/assets/Vue/vue_2.jpeg)
 
-También podrás registrar tus propios libros, por defecto el formulario ya cuenta con información
-base para que la demostración sea más rápida.
+You can also register your own books, by default the form already has information
+basis for a faster demonstration.
 
 ![Vue3.js](Ordinario/assets/Vue/vue_3.jpeg)
 ![Vue4.js](Ordinario/assets/Vue/vue_4.jpeg)
 
 
-Para comprobar que tu libro se ha registrado con éxito sólo debes volver a la categoría Librería y ver 
-el último libro que se ha insertado.
+To check that your book has been registered successfully, you just have to go back to the Bookstore category and see
+the last book that was inserted.
 
 ![Vue5.js](Ordinario/assets/Vue/vue_5.jpeg)
 
-Además contamos con las opciones de borrar, ver y actualizar.
+We also have the options to delete, view and update.
 
 ![Vue5.js](Ordinario/assets/Vue/vue_5.jpeg)
 
-Para borrar solo es necesario dar click en el botón delete. Después de hacer el paso anterior se mostrará la alerta con el mensaje de que se elimino el libro.
+To delete it is only necessary to click on the delete button. After doing the previous step, the alert will be displayed with the message that the book was deleted.
   
 ![Vue6.js](Ordinario/assets/Vue/vue_6.jpeg)
 
-Para ver la información de solo un libro es necesario dar click en el botón de View.
+To see the information of only one book it is necessary to click on the View button.
 
 ![Vue7.js](Ordinario/assets/Vue/vue_7.jpeg)
 
-Para actualizar la información de un libro es necesario dar click en Update. Después de hacer el paso anterior se mostrará un formulario con la información del libro, y si es necesario actualizar solo ingresa dicha información en el campo que le corresponda y luego dirigete a dar click en el botón de update, luego se mostrará la alerta con el mensaje de que se actualizó el libro.
+To update the information of a book it is necessary to click on Update. After doing the previous step, a form with the information of the book will be displayed, and if it is necessary to update, just enter that information in the corresponding field and then go to click on the update button, then the alert will be displayed with the message that the book was updated.
 
 ![Vue8.js](Ordinario/assets/Vue/vue_8.jpeg)
 ![Vue9.js](Ordinario/assets/Vue/vue_9.jpeg)
 
 
-## Extras
+## Additional features
 In the folder <code>vue</code> you will find another README with technical details of Vue.js.
 
 ## Project Video
