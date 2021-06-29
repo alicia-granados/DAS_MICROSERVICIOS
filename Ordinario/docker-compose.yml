@@ -11,11 +11,11 @@ services:
             MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
             MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
             MONGO_INITDB_DATABASE: ${MONGO_DB}
-            RABBIT_HOST: rabbitmq
-            RABBIT_PORT: 5672
-            RABBIT_USER: foo
-            RABBIT_PASSWORD: baz123
-            RABBITMQ_SERVER: rabbitmq  
+            RABBIT_HOST: ${RABBIT_HOST}
+            RABBIT_PORT: ${RABBIT_PORT}
+            RABBIT_USER: ${RABBIT_USER}
+            RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+            RABBITMQ_SERVER: ${RABBIT_HOST} 
             AMQPHOST: amqp://guest:guest@rabbitmq:5672
 
           
@@ -36,7 +36,7 @@ services:
             ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_USERNAME}
             ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_PASSWORD}
             
-    #Contenedor C
+    # Contenedor C
     pyhton:
         container_name: scraperLibros
         build: ./scrapper
@@ -111,8 +111,8 @@ services:
             - 5672:5672
             - 15672:15672
         environment: 
-            - RABBITMQ_DEFAULT_USER=foo
-            - RABBITMQ_DEFAULT_PASS=baz123     
+            - RABBITMQ_DEFAULT_USER= ${RABBIT_USER}
+            - RABBITMQ_DEFAULT_PASS= ${RABBIT_PASSWORD}    
 
     # Contenedor F
     vue:
