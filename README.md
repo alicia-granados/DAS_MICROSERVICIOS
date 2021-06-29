@@ -38,7 +38,7 @@ His name is *"mongo_db"*
 - ***Container B***: Contains a functional image of **MongoExpress**.  
 His name is *"dbms"*
 - ***Container C***: Contains an scrapper made in **Python**, that extracts data from 
-[Vocadb](https://developers.google.com/books), and inserts it into the database.  
+[Bookdb](https://developers.google.com/books), and inserts it into the database.  
 His name is *"scraperLibros"*
 - ***Container D***: Contains an image of **Flask**, which will be used as an API to establish communication and handling of requests.
 His name is  *"pyapp"*
@@ -53,24 +53,24 @@ His name is  *"vue"*
 2. Enter the repository folder.
 3. In case of having containers running, make sure that all containers are stopped.
 <code>$ sudo docker stop $(sudo docker ps -q -a)</code>
-4.- Make sure all the ports needed to run the containers are available.
-5.- As an optional step you can delete all the images and containers so that they do not cause any  type of conflict .
+4. Make sure all the ports needed to run the containers are available.
+5. As an optional step you can delete all the images and containers so that they do not cause any  type of conflict .
 <code>$ docker system prune --all</code>
-6.- Run the orchestrator.
+6. Run the orchestrator.
 <code>$ sudo docker-compose up --build</code>
 > Help: Once it is running we can see what is happening on the console.
 
 ![console](Ordinario/assets/console/console.jpg)
 
 ## Instructions to access the services
-1.- MongoDB service runs on the port *27017*.
-2.- The MongoExpress web service runs on http://localhost:8082.
+1. MongoDB service runs on the port *27017*.
+2. The MongoExpress web service runs on http://localhost:8082.
 <code>user: foo</code>  
 <code>password: bar123</code>
-3.- The Python service (API) runs on http://localhost:5000.
-3.- The Flask service runs on http://localhost:5001.
-4.- RabbitMQ service runs on port *15672*  also runs in http://localhost:15672.
-5.- The Vue.js service runs on http://localhost:8079
+3. The Python service (API) runs on http://localhost:5000.
+3. The Flask service runs on http://localhost:5001.
+4. RabbitMQ service runs on port *15672*  also runs in http://localhost:15672.
+5. The Vue.js service runs on http://localhost:8079
 
 ## Mongo Express Tour
 This service allows the storage, modification and extraction of information in a database. First, you need to enter the credentials to access the database.
