@@ -1,7 +1,7 @@
 <template>
   <v-container  grid-list-xl >
     <v-layout>
-      <v-flex md6 class="mr-8">
+      <v-flex md6 class="mr-1">
         <v-card  class="mb-3" :to="{name: 'CRUD_Book', params: { id: item } }" v-for= "(item,index) of Book" v-bind:key="index" >
           <v-card-text>
              <v-chip
