@@ -2,7 +2,7 @@
   <v-container  grid-list-xl >
     <v-layout>
       <v-flex md6 class="mr-8">
-        <v-card  class="mb-3" :to="{name: 'Book', params: { id: item } }" v-for= "(item,index) of Book" v-bind:key="index" >
+        <v-card  class="mb-3" :to="{name: 'CRUD_Book', params: { id: item } }" v-for= "(item,index) of Book" v-bind:key="index" >
           <v-card-text>
              <v-chip
               ml-0
@@ -10,7 +10,7 @@
               label
               text-color="white"
               >
-                {{item._id}} 
+                {{item.title}} 
               </v-chip>
               <br/>
             <p>{{item.subtitle }}</p>
@@ -21,7 +21,7 @@
             <p>{{ item.publishedDate }}</p>
             <p>{{ item.categories }} </p>
             <v-btn color="warning"  class="ml-0 mr-2">Update</v-btn>
-            <v-btn color= "error"  @click="removeBook(item)">Delete</v-btn>
+            <v-btn color= "error"  @click="removeBook(item._id.$oid)">Delete</v-btn>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -29,8 +29,7 @@
     
 
     </v-layout>
-    <!-- Snackbar-->
-    <v-snackbar
+   <v-snackbar
       v-model="snackbar"
     >
       {{mensaje}}
@@ -50,16 +49,13 @@
   
 
   export default {
-    name: 'Tarea_crud',
+    name: 'CRUD_Book',
     data(){
       return{
         Book:[], // Returns a data array for the component instance.
-        titulo:'',
-        descripcion:'',
         snackbar: false,
         mensaje: '',
-        formAgregar : true,
-        indexTarea : ''
+
       }
     },mounted(){
        
@@ -76,7 +72,31 @@
         });
     },
     methods:{
-     
+
+      // Function to DELETE a book
+        removeBook(book_id) {
+
+            
+            // Access and manipulate the API using the HTTP method
+            fetch(`http://localhost:5001/libros/${book_id}` , {
+            method: 'DELETE',
+            })
+                .then(res => {
+                    this.snackbar = true;
+                    this.mensaje = "Deleted Book"
+                    res.json(); // Returns a promise with the body of the text transformed to JSON
+                    setTimeout('document.location.reload()',2000);
+                    }) // or res.json() o.text
+                .then(res => console.log(res)) // Show the promise in the browser console
+            .catch(function(e) {
+                //console.log(e);  // In case of an error, show that error in the browser console
+            });
+            
+
+            
+        },
+    
+        
     }
   }
 </script>

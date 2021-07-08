@@ -40,7 +40,7 @@
                         block
                         color="success"
                         class="mb-3"
-                        :to="{name:'Tarea_crud'}"
+                        :to="{name:'CRUD_Book'}"
                     >
                         LIST OF BOOKS
                     </v-btn>

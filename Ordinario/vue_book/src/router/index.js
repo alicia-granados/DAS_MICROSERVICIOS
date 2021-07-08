@@ -11,9 +11,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/Tarea_crud',
-    name: 'Tarea_crud',
-    component: () => import(/* webpackChunkName: "tarea_crud" */ '../views/CRUD_Book.vue')
+    path: '/CRUD_Book',
+    name: 'CRUD_Book',
+    component: () => import(/* webpackChunkName: "CRUD_Book" */ '../views/CRUD_Book.vue')
   }
 ]
 
