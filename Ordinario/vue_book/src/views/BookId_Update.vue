@@ -117,20 +117,24 @@
             let publishedDate = document.getElementById("form-publishedDate-input").value;
             let categories = document.getElementById("form-categories-input").value;
             
-            // Pass the value of each input to the variable "book"
-            const book = {
-                title: title,
-                subtitle: subtitle,
-                authors: authors,
-                publisher: publisher,
-                publishedDate: publishedDate,
-                description: description,
-                pageCount: pageCount,
-                categories: categories
-            };
-            //console.log(book)
-            this.Updated_Book(book); // Calls the function to update the book, and passes the book as a parameter
-        
+            if ( title === ''  || authors === '' || publisher=== '' || description === '' || pageCount=== '' || publishedDate === '' || categories=== ''){
+              this.snackbar = true;
+              this.mensaje = 'Actualiza todos los campos';
+            } else{
+                // Pass the value of each input to the variable "book"
+                const book = {
+                    title: title,
+                    subtitle: subtitle,
+                    authors: authors,
+                    publisher: publisher,
+                    publishedDate: publishedDate,
+                    description: description,
+                    pageCount: pageCount,
+                    categories: categories
+                };
+                //console.log(book)
+                this.Updated_Book(book); // Calls the function to update the book, and passes the book as a parameter
+            }
         }        
     }
     }
