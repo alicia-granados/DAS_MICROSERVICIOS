@@ -20,7 +20,9 @@
             <p>{{ item.pageCount }} </p>
             <p>{{ item.publishedDate }}</p>
             <p>{{ item.categories }} </p>
-            <v-btn color="warning"  class="ml-0 mr-2">Update</v-btn>
+            <v-btn color="gray"  class="ml-0 mr-2">
+              <router-link  :to="{name:'bookidup', params:{id:item._id.$oid}}">Update</router-link> 
+            </v-btn>
             <v-btn color= "error"  @click="removeBook(item._id.$oid)">Delete</v-btn>
           </v-card-text>
         </v-card>
