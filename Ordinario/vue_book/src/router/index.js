@@ -16,6 +16,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "CRUD_Book" */ '../views/CRUD_Book.vue')
   },
   {
+    path: '/book/:id',
+    name: 'bookid',
+    component: () => import (/* webpackChunkName: "bookid" */ '../views/BookId.vue')
+  },
+  {
     path: '/bookup/:id',
     name: 'bookidup',
     component: () => import (/* webpackChunkName: "bookid_update */ '../views/BookId_Update.vue')
