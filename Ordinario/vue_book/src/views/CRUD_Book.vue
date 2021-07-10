@@ -20,7 +20,7 @@
             <p>{{ item.pageCount }} </p>
             <p>{{ item.publishedDate }}</p>
             <p>{{ item.categories }} </p>
-            <v-btn color="gray"  class="ml-0 mr-2">
+            <v-btn color="secondary"  class="ml-0 mr-2">
               <router-link  :to="{name:'bookidup', params:{id:item._id.$oid}}">Update</router-link> 
             </v-btn>
             <v-btn color= "error"  @click="removeBook(item._id.$oid)">Delete</v-btn>
@@ -30,15 +30,15 @@
 
       <v-flex md6  v-if ="formAgregar">
         <v-card class="mb-3 pa-3">
-          <v-form  v-on:submit.prevent="onSumbit" >
-            <v-text-field label="Title"  id="form-title-input" name="form-title-input" class="mx-8" ></v-text-field>
-            <v-text-field label="Subtitle" id="form-subttitle-input" name="form-subttitle-input" class="mx-8" ></v-text-field>
-            <v-text-field label="Publisher" id="form-authors-input"  name="form-authors-input" class="mx-8" ></v-text-field>
-            <v-text-field label="Publisher"  id="form-publisher-input" name="form-publisher-input" class="mx-8" ></v-text-field>
-            <v-textarea label="Description"  id="form-description-input" name="form-description-input" class="mx-8" ></v-textarea>
-            <v-text-field label="Page Count" id="form-pageCount-input"  name="form-pageCount-input" class="mx-8" ></v-text-field>
-            <v-text-field label="Published Date"  id="form-publishedDate-input" name="form-publishedDate-input" class="mx-8" ></v-text-field>
-            <v-text-field label="Categories"  id="form-categories-input"  name="form-categories-input" class="mx-8"></v-text-field>
+          <v-form  v-on:submit.prevent="onSumbit" class="mx-8">
+            <v-text-field label="Title"  id="form-title-input" name="form-title-input"  ></v-text-field>
+            <v-text-field label="Subtitle" id="form-subttitle-input" name="form-subttitle-input" ></v-text-field>
+            <v-text-field label="Publisher" id="form-authors-input"  name="form-authors-input"  ></v-text-field>
+            <v-text-field label="Publisher"  id="form-publisher-input" name="form-publisher-input"  ></v-text-field>
+            <v-textarea label="Description"  id="form-description-input" name="form-description-input"  ></v-textarea>
+            <v-text-field label="Page Count" id="form-pageCount-input"  name="form-pageCount-input" ></v-text-field>
+            <v-text-field label="Published Date"  id="form-publishedDate-input" name="form-publishedDate-input" ></v-text-field>
+            <v-text-field label="Categories"  id="form-categories-input"  name="form-categories-input" ></v-text-field>
             <v-btn block color="success mt-2" type="submit">Insert</v-btn>
           </v-form>
         </v-card>
