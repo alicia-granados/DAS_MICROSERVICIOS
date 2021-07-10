@@ -117,7 +117,7 @@ services:
     # Contenedor F
     vue:
         container_name: vue
-        build: ./vue
+        build: ./vue_book
         restart: on-failure:15
         volumes:
         - .:/vue
