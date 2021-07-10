@@ -14,6 +14,9 @@
                     <v-text-field label="Published Date"  id="form-publishedDate-input" name="form-publishedDate-input"  v-model="item.publishedDate"></v-text-field>
                     <v-text-field label="Categories"  id="form-categories-input"  name="form-categories-input" v-model="item.categories"></v-text-field>
                     <v-btn block color="primary mt-2" type="submit">Update</v-btn>
+                    <v-btn block color ="secondary mt-4">
+                        <router-link  to="/CRUD_Book">Return</router-link> 
+                    </v-btn>
                 </v-form>
                 </v-card>
             </v-flex>
