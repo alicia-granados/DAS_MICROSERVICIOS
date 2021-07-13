@@ -83,7 +83,7 @@ This service is based on consuming the Flask container API through HTTP methods.
 
 ![Vue1.js](Ordinario/assets/Vue/vue_1.jpeg)
 
-By clicking on the Library link, you will find a table with all the books in the database.
+By clicking on the Book List option in the menu, you will find all the books in the database.
 
 ![Vue2.js](Ordinario/assets/Vue/vue_2.jpeg)
 
@@ -94,8 +94,7 @@ basis for a faster demonstration.
 ![Vue4.js](Ordinario/assets/Vue/vue_4.jpeg)
 
 
-To check that your book has been registered successfully, you just have to go back to the Bookstore category and see
-the last book that was inserted.
+To check that your book has been successfully registered, just go to the bottom of the List of Books and see the last book that was inserted.
 
 ![Vue5.js](Ordinario/assets/Vue/vue_5.jpeg)
 
