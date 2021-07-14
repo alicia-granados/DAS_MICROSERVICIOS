@@ -81,40 +81,39 @@ It will show the books inserted from Container C. There you can insert, delete, 
 ## Tour of the Vue.js website
 This service is based on consuming the Flask container API through HTTP methods.
 
-![Vue1.js](Ordinario/assets/Vue/vue_1.jpeg)
+![Vue1.js](Ordinario/assets/Vue/vue_1.jpg)
 
-By clicking on the Library link, you will find a table with all the books in the database.
+By clicking on the Book List option in the menu, you will find all the books in the database.
 
-![Vue2.js](Ordinario/assets/Vue/vue_2.jpeg)
+![Vue2.js](Ordinario/assets/Vue/vue_2.jpg)
 
 You can also register your own books, by default the form already has information
 basis for a faster demonstration.
 
-![Vue3.js](Ordinario/assets/Vue/vue_3.jpeg)
-![Vue4.js](Ordinario/assets/Vue/vue_4.jpeg)
+![Vue3.js](Ordinario/assets/Vue/vue_3.jpg)
+![Vue4.js](Ordinario/assets/Vue/vue_4.jpg)
 
 
-To check that your book has been registered successfully, you just have to go back to the Bookstore category and see
-the last book that was inserted.
+To check that your book has been successfully registered, just go to the bottom of the List of Books and see the last book that was inserted.
 
-![Vue5.js](Ordinario/assets/Vue/vue_5.jpeg)
+![Vue5.js](Ordinario/assets/Vue/vue_5.jpg)
 
 We also have the options to delete, view and update.
 
-![Vue5.js](Ordinario/assets/Vue/vue_5.jpeg)
+![Vue5.js](Ordinario/assets/Vue/vue_5.jpg)
 
 To delete it is only necessary to click on the delete button. After doing the previous step, the alert will be displayed with the message that the book was deleted.
   
-![Vue6.js](Ordinario/assets/Vue/vue_6.jpeg)
+![Vue6.js](Ordinario/assets/Vue/vue_6.jpg)
 
 To see the information of only one book it is necessary to click on the View button.
 
-![Vue7.js](Ordinario/assets/Vue/vue_7.jpeg)
+![Vue7.js](Ordinario/assets/Vue/vue_7.jpg)
 
 To update the information of a book it is necessary to click on Update. After doing the previous step, a form with the information of the book will be displayed, and if it is necessary to update, just enter that information in the corresponding field and then go to click on the update button, then the alert will be displayed with the message that the book was updated.
 
-![Vue8.js](Ordinario/assets/Vue/vue_8.jpeg)
-![Vue9.js](Ordinario/assets/Vue/vue_9.jpeg)
+![Vue8.js](Ordinario/assets/Vue/vue_8.jpg)
+![Vue9.js](Ordinario/assets/Vue/vue_9.jpg)
 
 
 ## Additional features
